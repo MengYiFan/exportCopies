@@ -64,7 +64,7 @@
           name = row.querySelector('.good-name').textContent
           parseNameRes = name.match(nameRegExp)
           cols = row.querySelectorAll('div.rl')
-          price = cols[2].textContent.replace(priceRegExp, '')
+          price = cols[2].textContent.replace(numberRegExp, '')
           totalNumber = cols[3].textContent.replace(numberRegExp, '')
           totalPrice = Math.round(price * totalNumber * 100) / 100
         } else if (isTMALL) {
