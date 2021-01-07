@@ -1,5 +1,8 @@
 ;
 (function() {
+  const VERSION = '0.21.0107'
+  const log = msg = console.log(msg)
+
   let path = location.hostname + location.pathname,
       isZGB = path === 'zgb.jd.com/order_detail.html',
       isALITONG = path === 'm.8.1688.com/lst-pc/mine-v2-order-detail.html',
@@ -7,6 +10,7 @@
       isJD = path === 'details.jd.com/normal/item.action'
 
   if ([isZGB, isALITONG, isTMALL, isJD].some(item => item)) {
+    log('The version of export copies: ', VERSION)
     dynamicInsert('https://mengyifan.github.io/exportCopies/main.css', callback)
   }
 
@@ -178,7 +182,6 @@
   }
 
   function copy(content) {
-    console.log('Copy: \n', content)
     let textarea = document.createElement('textarea')
     textarea.classList.add('ele--hidden')
     document.body.appendChild(textarea)
