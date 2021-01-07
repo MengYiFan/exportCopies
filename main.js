@@ -56,5 +56,5 @@
 		}
 	}
 
-	dynamicInsert('./main.css', callback)
+	dynamicInsert('https://mengyifan.github.io/exportCopies/main.css', callback)
 }());
