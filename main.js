@@ -49,11 +49,23 @@
             cols, 
             price, 
             priceStat,
+            date = '',
+            timeRegExp = /\d{4}-\d{2}-\d{2}/g,
             nameRegExp = /(\d+(\.\d+)?(([\*|\d|A-Za-z]+)|([\u4e00-\u9fa5]){1})?)/g,
             numberRegExp = /[^\d\.]/gi
 
         if (isALITONG) {
           //
+          date = [
+					    ...document.querySelectorAll('.p-order-detail-buyer-info-item')
+					].reduce((acc, curr) => {
+						if (-1 !== curr.textContent.indexOf('付款时间')) {
+							return (curr.textContent.match(timeRegExp) || [])[0] || ''
+						}
+
+						return acc
+					}, '')
+
           tr = findParentByEle(row, 'tr')
           name = tr.querySelector('.p-warehouse__offer-title').textContent
           parseNameRes = name.match(nameRegExp)
@@ -61,6 +73,16 @@
           totalPrice = tr.querySelectorAll('td')[4].textContent.replace(/[^\d\.]/gi, '')
         } else if (isZGB) {
           //
+					date = [
+					    ...document.querySelectorAll('.card .c2-item .content .row')
+					].reduce((acc, curr) => {
+						if (-1 !== curr.textContent.indexOf('下单时间')) {
+							return (curr.textContent.match(timeRegExp) || [])[0] || ''
+						}
+
+						return acc
+					}, '')
+
           name = row.querySelector('.good-name').textContent
           parseNameRes = name.match(nameRegExp)
           cols = row.querySelectorAll('div.rl')
@@ -69,6 +91,12 @@
           totalPrice = Math.round(price * totalNumber * 100) / 100
         } else if (isTMALL) {
           //
+          try {
+          	date = document.querySelectorAll('.step-time .step-time-wraper')[1].textContent.match(timeRegExp)
+          } catch() {
+          	date = ''
+          }
+
           priceStat = [
             ...document.querySelectorAll('.total-count-line')
           ].reduce((acc, curr) => {
@@ -98,6 +126,13 @@
           totalNumber = +tr.querySelector('.header-count').textContent
           totalPrice = (totalNumber * price) * priceStat.actual / priceStat.total
         } else if (isJD) {
+        	try {
+          	date = document.querySelectorAll('#pay-info-nozero .dd .item')[1].textContent.match(timeRegExp)
+          	date = date ? date[0] : ''
+          } catch() {
+          	date = ''
+          }
+
           //
           priceStat = [
             ...document.querySelectorAll('.goods-total ul li')
@@ -136,10 +171,10 @@
         sum += +totalPrice
         totalPrice = getPirce(totalPrice)
 
-        return `${name}	${size}	${number}	${totalNumber}	${totalPrice}`
+        return `${date}	 	${name}	${size}	${number}	${totalNumber}	${totalPrice}`
       })
 
-      content.push(` 	 	 	 	 ${getPirce(sum)}`)
+      content.push(` 	 	 	 	 	 	 ${getPirce(sum)}`)
       copy(content.join('\t\n'))
 
       alertMsg('复制成功，请在Excel粘贴。')
