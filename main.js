@@ -136,7 +136,7 @@
         sum += +totalPrice
         totalPrice = getPirce(totalPrice)
 
-        return `${name}	${size}	${number}	${totalNumber}	${totalPrice}`.join()
+        return `${name}	${size}	${number}	${totalNumber}	${totalPrice}`
       })
 
       content.push(` 	 	 	 	 ${sum}`)
