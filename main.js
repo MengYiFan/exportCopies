@@ -140,7 +140,7 @@
           number = parseNameRes[1] || 1
         }
 
-        sum += totalPrice
+        sum += +totalPrice
         totalPrice = getPirce(totalPrice)
 
         return `${name} ${size} ${number} ${totalNumber}  ${totalPrice}`
