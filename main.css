@@ -1,0 +1,37 @@
+.btn--export-data {
+	position: fixed;
+	left: 50%;
+    bottom: 10px;
+    padding: 6px 10px;
+    border: 1px solid #222222;
+    border-radius: 8px;
+    background-color: #fff;
+    transform: translateX(-50%);
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 999;
+}
+
+.btn--export-data:hover {
+	color: #e75c2c;
+	border-color: #e75c2c;
+}
+
+.ele--hidden {
+	position: absolute;
+	top: -99999px;
+	left: -99999px;
+}
+
+.dialog {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    background-color: #fff;
+    padding: 10px 20px;
+    background-color: #e75c2c;
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+    z-index: 999;
+}

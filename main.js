@@ -12,7 +12,7 @@
 		}
 
 		if (typeof(callback) === 'function') {
-				link.onload = link.onreadystatechange = function() {
+				ele.onload = ele.onreadystatechange = function() {
 					if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete"){
 						callback()
 						script.onload = script.onreadystatechange = null
@@ -20,7 +20,7 @@
 				}
 		}
 
-		head.appendChild(link)
+		head.appendChild(ele)
 	}
 
 	const callback = function() {
