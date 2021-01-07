@@ -136,10 +136,10 @@
         sum += +totalPrice
         totalPrice = getPirce(totalPrice)
 
-        return `${name} ${size} ${number} ${totalNumber}  ${totalPrice}`
+        return `${name}	${size}	${number}	${totalNumber}	${totalPrice}`.join()
       })
 
-      content.push(`        ${sum}`)
+      content.push(` 	 	 	 	 ${sum}`)
       copy(content.join('\t\n'))
 
       alertMsg('复制成功，请在Excel粘贴。')
