@@ -63,13 +63,13 @@
           //
           tr = findParentByEle(ele, 'tr')
           name = tr.querySelector('.p-warehouse__offer-title').textContent
-          parseNameRes = name.match(regExp)
+          parseNameRes = name.match(nameRegExp)
           totalNumber = tr.querySelectorAll('td')[2].textContent.replace(/[^\d\.]/gi, '')
           totalPrice = tr.querySelectorAll('td')[4].textContent.replace(/[^\d\.]/gi, '')
         } else if (isZGB) {
           //
           name = row.querySelector('.good-name').textContent
-          parseNameRes = name.match(regExp)
+          parseNameRes = name.match(nameRegExp)
           cols = row.querySelectorAll('div.rl')
           price = cols[2].textContent.replace(priceRegExp, '')
           totalNumber = cols[3].textContent.replace(numberRegExp, '')
@@ -100,7 +100,7 @@
 
           tr = findParentByEle(ele, 'tr')
           name = tr.querySelector('.item-link').textContent
-          parseNameRes = name.match(regExp)
+          parseNameRes = name.match(nameRegExp)
           price = +tr.querySelector('.header-price').textContent.replace(numberRegExp, '')
           totalNumber = +tr.querySelector('.header-count').textContent
           totalPrice = (totalNumber * price) * priceStat.actual / priceStat.total
