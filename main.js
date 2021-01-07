@@ -174,7 +174,7 @@
         return `${date}	 	${name}	${size}	${number}	${totalNumber}	${totalPrice}`
       })
 
-      content.push(` 	  	 	 	 	 ${getPirce(sum)}`)
+      content.push(` 	 	  	 	 	 	 ${getPirce(sum)}`)
       copy(content.join('\t\n'))
 
       alertMsg('复制成功，请在Excel粘贴。')
