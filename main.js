@@ -93,7 +93,7 @@
           //
           try {
           	date = document.querySelectorAll('.step-time .step-time-wraper')[1].textContent.match(timeRegExp)
-          } catch() {
+          } catch(e) {
           	date = ''
           }
 
@@ -129,7 +129,7 @@
         	try {
           	date = document.querySelectorAll('#pay-info-nozero .dd .item')[1].textContent.match(timeRegExp)
           	date = date ? date[0] : ''
-          } catch() {
+          } catch(e) {
           	date = ''
           }
 
@@ -174,7 +174,7 @@
         return `${date}	 	${name}	${size}	${number}	${totalNumber}	${totalPrice}`
       })
 
-      content.push(` 	 	 	 	 	 	 ${getPirce(sum)}`)
+      content.push(` 	  	 	 	 	 ${getPirce(sum)}`)
       copy(content.join('\t\n'))
 
       alertMsg('复制成功，请在Excel粘贴。')
