@@ -15,7 +15,7 @@
 				ele.onload = ele.onreadystatechange = function() {
 					if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete"){
 						callback()
-						script.onload = script.onreadystatechange = null
+						ele.onload = ele.onreadystatechange = null
 					}		
 				}
 		}
