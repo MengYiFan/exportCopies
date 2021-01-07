@@ -1,7 +1,7 @@
 ;
 (function() {
   const VERSION = '0.21.0107'
-  const log = msg = console.log(msg)
+  const log = msg => console.log(msg)
 
   let path = location.hostname + location.pathname,
       isZGB = path === 'zgb.jd.com/order_detail.html',
