@@ -38,7 +38,7 @@
         ].filter(row => row.style.display !== 'none')
       }
 
-      let content = rows.map(ele => {
+      let content = rows.map(row => {
         let tr,
             name,
             parseNameRes,
@@ -54,7 +54,7 @@
 
         if (isALITONG) {
           //
-          tr = findParentByEle(ele, 'tr')
+          tr = findParentByEle(row, 'tr')
           name = tr.querySelector('.p-warehouse__offer-title').textContent
           parseNameRes = name.match(nameRegExp)
           totalNumber = tr.querySelectorAll('td')[2].textContent.replace(/[^\d\.]/gi, '')
@@ -91,7 +91,7 @@
             total: 0
           })
 
-          tr = findParentByEle(ele, 'tr')
+          tr = findParentByEle(row, 'tr')
           name = tr.querySelector('.item-link').textContent
           parseNameRes = name.match(nameRegExp)
           price = +tr.querySelector('.header-price').textContent.replace(numberRegExp, '')
