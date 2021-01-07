@@ -14,14 +14,7 @@
     dynamicInsert('https://mengyifan.github.io/exportCopies/main.css', callback)
   }
 
-  function callback() {
-    let div = document.createElement('div')
-    div.classList.add('btn--export-data')
-    div.innerText = '导出数据'
-    div.addEventListener('click', handleSave)
-    document.body.appendChild(div)
-
-    // main function
+  // main function
     function handleSave() {
       let sum = 0,
           path = location.hostname + location.pathname,
@@ -151,6 +144,13 @@
 
       alertMsg('复制成功，请在Excel粘贴。')
     }
+
+  function callback() {
+    let div = document.createElement('div')
+    div.classList.add('btn--export-data')
+    div.innerText = '导出数据'
+    div.addEventListener('click', handleSave)
+    document.body.appendChild(div)
   }
 
   function dynamicInsert(url, callback = null, type = 'style') {
