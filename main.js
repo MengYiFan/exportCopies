@@ -56,7 +56,7 @@
 
         if (isALITONG) {
           //
-          priceStat.actual = [
+          priceStat = [
           	...document.querySelectorAll('.p-order-detail-order-ps-item')
           ].reduce((acc, curr) => {
         		let textContent = curr.textContent,
@@ -89,8 +89,8 @@
           tr = findParentByEle(row, 'tr')
           name = tr.querySelector('.p-warehouse__offer-title').textContent
           parseNameRes = name.match(nameRegExp)
-          totalNumber = tr.querySelectorAll('td')[2].textContent.replace(numberRegExp, '')
           price = tr.querySelectorAll('td')[1].textContent.replace(numberRegExp, '')
+          totalNumber = tr.querySelectorAll('td')[2].textContent.replace(numberRegExp, '')
           totalPrice = (totalNumber * price) * priceStat.actual / priceStat.total
         } else if (isZGB) {
           //
