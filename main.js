@@ -10,13 +10,12 @@
       isJD = path === 'details.jd.com/normal/item.action'
 
   if ([isZGB, isALITONG, isTMALL, isJD].some(item => item)) {
-    log('The version of export copies: ', VERSION)
+    log('The version of export copies: ' + VERSION)
     dynamicInsert('https://mengyifan.github.io/exportCopies/main.css', callback)
   }
 
   // main function
-    function handleSave() {
-    	console.log('Save.')
+    function handleSave() {    	
       let sum = 0,
           path = location.hostname + location.pathname,
           rows = []
@@ -90,9 +89,9 @@
           tr = findParentByEle(row, 'tr')
           name = tr.querySelector('.p-warehouse__offer-title').textContent
           parseNameRes = name.match(nameRegExp)
-          price = tr.querySelectorAll('td')[1].textContent.replace(numberRegExp, '')
           totalNumber = tr.querySelectorAll('td')[2].textContent.replace(numberRegExp, '')
-          totalPrice = (totalNumber * price) * priceStat.actual / priceStat.total
+          totalPrice = tr.querySelectorAll('td')[4].textContent.replace(numberRegExp, '')
+          totalPrice = +totalPrice * priceStat.actual / priceStat.total
         } else if (isZGB) {
           //
 					date = [
