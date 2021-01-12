@@ -56,6 +56,26 @@
 
         if (isALITONG) {
           //
+          priceStat.actual = [
+          	...document.querySelectorAll('.p-order-detail-order-ps-item')
+          ].reduce((acc, curr) => {
+        		let textContent = curr.textContent,
+              	price = +textContent.replace(numberRegExp, '')
+
+            if (-1 !== textContent.indexOf('货款金额')) {
+              acc.total = price
+            }
+
+            if (-1 !== textContent.indexOf('总金额')) {
+              acc.actual += price
+            }
+
+            return acc
+          }, {
+            actual: 0,
+            total: 0
+          })
+
           date = [
 					    ...document.querySelectorAll('.p-order-detail-buyer-info-item')
 					].reduce((acc, curr) => {
@@ -69,8 +89,9 @@
           tr = findParentByEle(row, 'tr')
           name = tr.querySelector('.p-warehouse__offer-title').textContent
           parseNameRes = name.match(nameRegExp)
-          totalNumber = tr.querySelectorAll('td')[2].textContent.replace(/[^\d\.]/gi, '')
-          totalPrice = tr.querySelectorAll('td')[4].textContent.replace(/[^\d\.]/gi, '')
+          totalNumber = tr.querySelectorAll('td')[2].textContent.replace(numberRegExp, '')
+          price = tr.querySelectorAll('td')[1].textContent.replace(numberRegExp, '')
+          totalPrice = (totalNumber * price) * priceStat.actual / priceStat.total
         } else if (isZGB) {
           //
 					date = [
