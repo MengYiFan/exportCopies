@@ -16,6 +16,7 @@
 
   // main function
     function handleSave() {
+    	console.log('Save.')
       let sum = 0,
           path = location.hostname + location.pathname,
           rows = []
@@ -67,7 +68,7 @@
             }
 
             if (-1 !== textContent.indexOf('总金额')) {
-              acc.actual += price
+              acc.actual = acc.actual + textContent.slice(textContent.indexOf('总金额')).replace(numberRegExp, '')
             }
 
             return acc
