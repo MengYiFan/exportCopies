@@ -94,6 +94,26 @@
           totalPrice = +totalPrice * priceStat.actual / priceStat.total
         } else if (isZGB) {
           //
+          priceStat = [
+              ...document.querySelectorAll('.od-count .clearfix')
+          ].reduce((acc, curr) => {
+            let textContent = curr.textContent,
+                price = +textContent.replace(numberRegExp, '')
+
+            if (-1 !== textContent.indexOf('商品总额')) {
+              acc.total = price
+            }
+
+            if (-1 !== textContent.indexOf('实付款')) {
+              acc.actual += price
+            }
+
+            return acc
+          }, {
+            actual: 0,
+            total: 0
+          })
+
 					date = [
 					    ...document.querySelectorAll('.card .c2-item .content .row')
 					].reduce((acc, curr) => {
@@ -109,7 +129,7 @@
           cols = row.querySelectorAll('div.rl')
           price = cols[2].textContent.replace(numberRegExp, '')
           totalNumber = cols[3].textContent.replace(numberRegExp, '')
-          totalPrice = Math.round(price * totalNumber * 100) / 100
+          totalPrice = (totalNumber * price) * priceStat.actual / priceStat.total
         } else if (isTMALL) {
           //
           try {
